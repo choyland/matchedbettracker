@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using SQLite;
+using SQLite.Net.Attributes;
 using SQLiteNetExtensions.Attributes;
 
 namespace MatchedBetTracker.Model.Entities
