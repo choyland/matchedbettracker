@@ -1,21 +1,20 @@
 ﻿using System;
 using System.IO;
 using MatchedBetTracker.Data.Interfaces;
-using MatchedBetTracker.iOS.Handlers;
-using MatchedBetTracker.iOS.SqlClient;
+using MatchedBetTracker.Droid.SqlClient;
 using MatchedBetTracker.Model.Entities;
 using SQLite.Net;
 using SQLite.Net.Async;
-using SQLite.Net.Platform.XamarinIOS;
+using SQLite.Net.Platform.XamarinAndroid;
 using Xamarin.Forms;
 
 [assembly: Dependency(typeof(MatchedBetTrackerSqlClient))]
-namespace MatchedBetTracker.iOS.SqlClient
+namespace MatchedBetTracker.Droid.SqlClient
 {
     public class MatchedBetTrackerSqlClient : ISQLite
     {
         public SQLiteAsyncConnection SqLiteAsyncConnection { get; set; }
-        private SQLite.Net.SQLiteConnectionWithLock _sqLiteConnectionWithLock;
+        private SQLiteConnectionWithLock _sqLiteConnectionWithLock;
 
         public MatchedBetTrackerSqlClient()
         {
@@ -24,30 +23,26 @@ namespace MatchedBetTracker.iOS.SqlClient
 
         public SQLiteAsyncConnection GetAsyncConnection()
         {
-            var dbPath = GetDatabaseFilePath();
-
-            var platForm = new SQLitePlatformIOS();
-
+            var dbFilePath = GetDatabaseFilePath();
             var connectionFactory = new Func<SQLiteConnectionWithLock>(
-                () => _sqLiteConnectionWithLock ?? (_sqLiteConnectionWithLock = new SQLiteConnectionWithLock(
-                          platForm,
-                          new SQLiteConnectionString(dbPath, storeDateTimeAsTicks: true))));
+                () => _sqLiteConnectionWithLock ?? (_sqLiteConnectionWithLock = new SQLiteConnectionWithLock(new SQLitePlatformAndroid(), 
+                          new SQLiteConnectionString(dbFilePath, storeDateTimeAsTicks: true))));
 
             var asyncConnection = new SQLiteAsyncConnection(connectionFactory);
 
             return asyncConnection;
         }
 
-        private string GetDatabaseFilePath()
+        private static string GetDatabaseFilePath()
         {
             var documentsFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal,
                 Environment.SpecialFolderOption.Create);
 
-            var databaseDirectoryPath = Path.Combine(documentsFolderPath, "..", "Library", "Databases");
+            var databaseDirectoryPath = Path.Combine(documentsFolderPath, "databases");
 
             if (!Directory.Exists(databaseDirectoryPath)) Directory.CreateDirectory(databaseDirectoryPath);
 
-            var databaseFilePath = Path.Combine(databaseDirectoryPath, $"{FileHandler.DbNameNoExtension}.{FileHandler.DbExtension}");
+            var databaseFilePath = Path.Combine(databaseDirectoryPath, "matchedBetTracker.db3");
 
             if (!File.Exists(databaseFilePath)) File.Create(databaseFilePath);
 
@@ -58,7 +53,7 @@ namespace MatchedBetTracker.iOS.SqlClient
         {
             var databasePath = GetDatabaseFilePath();
 
-            _sqLiteConnectionWithLock = new SQLiteConnectionWithLock(new SQLitePlatformIOS(),
+            _sqLiteConnectionWithLock = new SQLiteConnectionWithLock(new SQLitePlatformAndroid(),
                 new SQLiteConnectionString(databasePath, storeDateTimeAsTicks: false));
             SqLiteAsyncConnection = new SQLiteAsyncConnection(() => _sqLiteConnectionWithLock);
 

@@ -129,6 +129,7 @@
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SqlClient\MatchedBetTrackerSqlClient.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -150,6 +151,14 @@
     <AndroidResource Include="Resources\values\styles.xml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\MatchedBetTracker.Data\MatchedBetTracker.Data.csproj">
+      <Project>{4FF4502C-92F4-46DC-8888-6D283AC6475D}</Project>
+      <Name>MatchedBetTracker.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\MatchedBetTracker.Model\MatchedBetTracker.Model.csproj">
+      <Project>{F4FB112F-597B-485B-8071-B80ABC8BFCDA}</Project>
+      <Name>MatchedBetTracker.Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MatchedBetTracker\MatchedBetTracker.csproj">
       <Project>{e288fc1c-8217-4508-b39e-21e959624f0a}</Project>
       <Name>MatchedBetTracker</Name>
