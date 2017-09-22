@@ -1,4 +1,4 @@
-﻿using SQLite;
+﻿using SQLite.Net.Async;
 
 namespace MatchedBetTracker.Data.Interfaces
 {

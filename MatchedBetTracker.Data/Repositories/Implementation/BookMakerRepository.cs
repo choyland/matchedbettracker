@@ -1,12 +1,13 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using MatchedBetTracker.Data.Interfaces;
+using MatchedBetTracker.Data.Repositories.Interfaces;
 using MatchedBetTracker.Model.Entities;
-using MatchedBetTracker.Repository.Repositories.Interfaces;
-using SQLite;
+using SQLiteNetExtensionsAsync.Extensions;
 
 namespace MatchedBetTracker.Data.Repositories.Implementation
 {
-    public class BookMakerRepository : IBookMakerRepository
+    public class BookMakerRepository : BaseRepository, IBookMakerRepository
     {
         private readonly ISQLiteImplementation _sqLiteImplementation;
         public string StatusMessage { get; set; }
@@ -16,19 +17,48 @@ namespace MatchedBetTracker.Data.Repositories.Implementation
             _sqLiteImplementation = sqLiteImplementation;
         }
 
-        //public async Task CreateUser(User user)
-        //{
-        //    using (await AsyncLock.Locker)
-        //    var result = await _conn.InsertOrReplaceAsync(user).ConfigureAwait(continueOnCapturedContext: false);
+        public async Task<List<BookMaker>> GetAllBookMakers()
+        {
+            using (await Locker.LockAsync())
+            {
+                var connection = _sqLiteImplementation.GetAsyncConnection();
 
-        //    StatusMessage = $"{result} record(s) added [User Name: {user.UserName}])";
-        //}
+                var bookMakers = await connection.Table<BookMaker>().ToListAsync();
 
-        //public async Task<User> GetUser()
-        //{
-        //    var result = await _conn.Table<User>().FirstOrDefaultAsync();
+                return bookMakers;
+            }
+        }
 
-        //    return result;
-        //}
+        public async Task<List<BookMaker>> GetAllBookMakersWithBets()
+        {
+            using (await Locker.LockAsync())
+            {
+                var connection = _sqLiteImplementation.GetAsyncConnection();
+
+                var bookMakers = await connection.GetAllWithChildrenAsync<BookMaker>();
+
+                return bookMakers;
+            }
+        }
+
+        public async Task AddBookMaker(BookMaker bookMaker)
+        {
+            using (await Locker.LockAsync())
+            {
+                var connection = _sqLiteImplementation.GetAsyncConnection();
+
+                await connection.InsertOrReplaceWithChildrenAsync(bookMaker);
+            }
+        }
+
+        public async Task UpdateBookMaker(BookMaker bookMaker)
+        {
+            using (await Locker.LockAsync())
+            {
+                var connection = _sqLiteImplementation.GetAsyncConnection();
+
+                await connection.UpdateWithChildrenAsync(bookMaker);
+            }
+        }
     }
 }

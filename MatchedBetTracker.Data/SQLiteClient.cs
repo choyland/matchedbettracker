@@ -1,5 +1,6 @@
 ﻿using MatchedBetTracker.Data.Interfaces;
 using SQLite;
+using SQLite.Net.Async;
 using Xamarin.Forms;
 
 namespace MatchedBetTracker.Data
