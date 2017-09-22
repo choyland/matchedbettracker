@@ -11,7 +11,9 @@ namespace MatchedBetTracker
     {
         public App()
         {
-            InitializeComponent();            
+            InitializeComponent();
+
+            Bootstrap.Run();
         }
 
         protected override void OnStart()
