@@ -6,12 +6,12 @@ using SQLite;
 
 namespace MatchedBetTracker.Data.Repositories.Implementation
 {
-    public class UserRepository : IUserRepository
+    public class BookMakerRepository : IBookMakerRepository
     {
         private readonly ISQLiteImplementation _sqLiteImplementation;
         public string StatusMessage { get; set; }
 
-        public UserRepository(ISQLiteImplementation sqLiteImplementation)
+        public BookMakerRepository(ISQLiteImplementation sqLiteImplementation)
         {
             _sqLiteImplementation = sqLiteImplementation;
         }
