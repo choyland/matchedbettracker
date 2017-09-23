@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using FreshMvvm;
+using MatchedBetTracker.PageModels;
 using Xamarin.Forms;
 
 namespace MatchedBetTracker
@@ -14,6 +15,18 @@ namespace MatchedBetTracker
             InitializeComponent();
 
             Bootstrap.Run();
+
+            SetupNavigation();
+        }
+
+        private void SetupNavigation()
+        {
+            var tabbedNavigation = new FreshTabbedNavigationContainer();
+
+            tabbedNavigation.AddTab<HomePageModel>("Home", null);
+            tabbedNavigation.AddTab<BetListPageModel>("Bets", null);
+
+            MainPage = tabbedNavigation;
         }
 
         protected override void OnStart()

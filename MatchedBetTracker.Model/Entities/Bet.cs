@@ -16,5 +16,6 @@ namespace MatchedBetTracker.Model.Entities
         public BookMaker BookMaker { get; set; }
         [ForeignKey(typeof(BookMaker))]
         public int BookMakerId { get; set; }
+        public double Profit { get; set; }
     }
 }

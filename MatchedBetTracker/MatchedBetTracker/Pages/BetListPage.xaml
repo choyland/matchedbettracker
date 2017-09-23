@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<freshMvvm:FreshBaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:freshMvvm="clr-namespace:FreshMvvm;assembly=FreshMvvm"
+             x:Class="MatchedBetTracker.Pages.BetListPage">
+    <freshMvvm:FreshBaseContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Command="{Binding AddNewBetCommand}" />
+    </freshMvvm:FreshBaseContentPage.ToolbarItems>
+    <StackLayout>
+            <Label Text="Click add to add a bet" />
+        </StackLayout>
+
+</freshMvvm:FreshBaseContentPage>

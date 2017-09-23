@@ -38,6 +38,19 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Bootstrap.cs" />
+    <Compile Include="PageModels\AddBetPageModel.cs" />
+    <Compile Include="PageModels\BetListPageModel.cs" />
+    <Compile Include="PageModels\HomePageModel.cs" />
+    <Compile Include="Pages\AddBetPage.xaml.cs">
+      <DependentUpon>AddBetPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\BetListPage.xaml.cs">
+      <DependentUpon>BetListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\HomePage.xaml.cs">
+      <DependentUpon>HomePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -80,6 +93,38 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\HomePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\AddBetPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\BetListPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\MatchedBetTracker.BusinessLayer\MatchedBetTracker.BusinessLayer.csproj">
+      <Project>{A7598B75-69A7-4570-A136-ADD5FA84A92D}</Project>
+      <Name>MatchedBetTracker.BusinessLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\MatchedBetTracker.Data\MatchedBetTracker.Data.csproj">
+      <Project>{4FF4502C-92F4-46DC-8888-6D283AC6475D}</Project>
+      <Name>MatchedBetTracker.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\MatchedBetTracker.Model\MatchedBetTracker.Model.csproj">
+      <Project>{F4FB112F-597B-485B-8071-B80ABC8BFCDA}</Project>
+      <Name>MatchedBetTracker.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Forms.2.3.4.270\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.3.4.270\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />
