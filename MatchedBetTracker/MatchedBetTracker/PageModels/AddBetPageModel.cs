@@ -44,8 +44,4 @@ namespace MatchedBetTracker.PageModels
             }
         }
     }
-
-    public interface IBetService : IBetRepository
-    {
-    }
 }
