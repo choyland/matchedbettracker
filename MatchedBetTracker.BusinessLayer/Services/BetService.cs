@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
+using MatchedBetTracker.BusinessLayer.ViewModels;
 using MatchedBetTracker.Data.Repositories.Interfaces;
 using MatchedBetTracker.Model.Entities;
 
@@ -17,9 +19,19 @@ namespace MatchedBetTracker.BusinessLayer.Services
             _betRepository = betRepository;
         }
 
-        public async Task AddBet(Bet bet)
+        public async Task AddBet(BetViewModel betViewModel)
         {
-            await _betRepository.AddBet(bet);
+            var betEntity = new Bet
+            {
+                BetDateUtc = betViewModel.BetDateUtc,
+                BookMaker = new BookMaker
+                {
+                    Name = betViewModel.BookMaker.Name
+                },
+                Profit = betViewModel.Profit
+            };
+
+            await _betRepository.AddBet(betEntity);
         }
     }
 }

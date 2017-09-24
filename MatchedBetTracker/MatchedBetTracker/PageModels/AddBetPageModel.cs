@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using FreshMvvm;
+using MatchedBetTracker.BusinessLayer.ViewModels;
 using MatchedBetTracker.Data.Repositories.Interfaces;
 using MatchedBetTracker.Model.Entities;
 using Xamarin.Forms;
@@ -31,10 +32,10 @@ namespace MatchedBetTracker.PageModels
             {
                 return new Command(async () =>
                 {
-                    await _betService.AddBet(new Bet
+                    await _betService.AddBet(new BetViewModel
                     {
                         BetDateUtc = DateTime.UtcNow,
-                        BookMaker = new BookMaker
+                        BookMaker = new BookMakerViewModel
                         {
                             Name = "Ladbrokes"
                         },
