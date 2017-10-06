@@ -1,10 +1,6 @@
 ﻿using FreshMvvm;
 using MatchedBetTracker.Data.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using MatchedBetTracker.BusinessLayer.Factories.Interfaces;
 using MatchedBetTracker.BusinessLayer.Services;
 using MatchedBetTracker.Data;
 using MatchedBetTracker.Data.Repositories.Implementation;
@@ -23,11 +19,17 @@ namespace MatchedBetTracker
         {
             ConfigureData();
             ConfigureServices();
+            ConfigureFactories();
+        }
+
+        private static void ConfigureFactories()
+        {
+            FreshIOC.Container.Register<IBetCalculationFactory, IBetCalculationFactory>();
         }
 
         private static void ConfigureServices()
         {
-            FreshIOC.Container.Register<BusinessLayer.Services.IBetService, BetService>();
+            FreshIOC.Container.Register<IBetService, BetService>();
         }
 
         private static void ConfigureData()

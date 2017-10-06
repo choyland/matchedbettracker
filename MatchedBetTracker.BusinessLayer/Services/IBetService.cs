@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using MatchedBetTracker.BusinessLayer.ViewModels;
-using MatchedBetTracker.Model.Entities;
+using MatchedBetTracker.Model.Enum;
 
 namespace MatchedBetTracker.BusinessLayer.Services
 {
     public interface IBetService
     {
         Task AddBet(BetViewModel bet);
+
+        BetCalculationViewModel CalculateBet(BetType betType, double backStake, double backOdds, double layOdds, double layCommission);
     }
 }

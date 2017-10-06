@@ -15,6 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatchedBetTracker.Data", "M
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatchedBetTracker.BusinessLayer", "MatchedBetTracker.BusinessLayer\MatchedBetTracker.BusinessLayer.csproj", "{A7598B75-69A7-4570-A136-ADD5FA84A92D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Platform", "Platform", "{E1E40FF5-D1F5-404C-A082-D57A99836E8A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Portable", "Portable", "{C369C63F-7F5C-4723-A03D-623F0ECCC228}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Ad-Hoc|Any CPU = Ad-Hoc|Any CPU
@@ -186,6 +190,14 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{86A7F48E-A9CD-491C-8534-B3EA7AE1B677} = {E1E40FF5-D1F5-404C-A082-D57A99836E8A}
+		{498EBE3B-C3B7-4C62-98AA-F52259B02FD8} = {C369C63F-7F5C-4723-A03D-623F0ECCC228}
+		{6978381E-3CA5-4430-A385-F27881AC462F} = {E1E40FF5-D1F5-404C-A082-D57A99836E8A}
+		{F4FB112F-597B-485B-8071-B80ABC8BFCDA} = {C369C63F-7F5C-4723-A03D-623F0ECCC228}
+		{4FF4502C-92F4-46DC-8888-6D283AC6475D} = {C369C63F-7F5C-4723-A03D-623F0ECCC228}
+		{A7598B75-69A7-4570-A136-ADD5FA84A92D} = {C369C63F-7F5C-4723-A03D-623F0ECCC228}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C82830CF-63AB-4F49-BF2A-B4B47B7E57C2}
