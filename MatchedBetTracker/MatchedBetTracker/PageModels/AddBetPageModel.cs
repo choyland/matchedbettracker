@@ -1,24 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using FreshMvvm;
+using MatchedBetTracker.BusinessLayer.Providers.Interfaces;
+using MatchedBetTracker.BusinessLayer.Services.Interfaces;
 using MatchedBetTracker.BusinessLayer.ViewModels;
-using MatchedBetTracker.Data.Repositories.Interfaces;
-using MatchedBetTracker.Model.Entities;
 using Xamarin.Forms;
 
 namespace MatchedBetTracker.PageModels
 {
     public class AddBetPageModel : FreshBasePageModel
     {
-        private readonly BusinessLayer.Services.IBetService _betService;
+        private readonly IBetService _betService;
+        private readonly IDateTimeProvider _dateTimeProvider;
 
-        public AddBetPageModel(BusinessLayer.Services.IBetService betService)
+        public AddBetPageModel(IBetService betService, IDateTimeProvider dateTimeProvider)
         {
             _betService = betService;
+            _dateTimeProvider = dateTimeProvider;
         }
 
         public override void Init(object initData)
@@ -34,7 +32,7 @@ namespace MatchedBetTracker.PageModels
                 {
                     await _betService.AddBet(new BetViewModel
                     {
-                        BetDateUtc = DateTime.UtcNow,
+                        BetDateUtc = _dateTimeProvider.GetDateTimeNowUtc(),
                         BookMaker = new BookMakerViewModel
                         {
                             Name = "Ladbrokes"

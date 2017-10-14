@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using MatchedBetTracker.Data.Interfaces;
 using MatchedBetTracker.Data.Repositories.Interfaces;
 using MatchedBetTracker.Model.Entities;
@@ -23,6 +24,16 @@ namespace MatchedBetTracker.Data.Repositories.Implementation
                 var connection = _sqLiteImplementation.GetAsyncConnection();
 
                 await connection.InsertOrReplaceWithChildrenAsync(bet);
+            }
+        }
+
+        public async Task<List<Bet>> GetAll()
+        {
+            using (await Locker.LockAsync())
+            {
+                var connection = _sqLiteImplementation.GetAsyncConnection();
+
+                return await connection.GetAllWithChildrenAsync<Bet>();
             }
         }
     }

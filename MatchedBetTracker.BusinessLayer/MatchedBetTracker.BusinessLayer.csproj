@@ -45,9 +45,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="Factories\Implementation\BetCalculationFactory.cs" />
+    <Compile Include="Factories\Implementation\FreeBetSnrCalculator.cs" />
+    <Compile Include="Factories\Implementation\FreeBetSrCalculator.cs" />
+    <Compile Include="Factories\Implementation\NormalBetCalculator.cs" />
+    <Compile Include="Factories\Interfaces\IBetCalculationFactory.cs" />
+    <Compile Include="Factories\Interfaces\IBetCalculator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceModels\BetCalculationModel.cs" />
     <Compile Include="Services\BetService.cs" />
     <Compile Include="Services\IBetService.cs" />
+    <Compile Include="ViewModels\BetCalculationViewModel.cs" />
     <Compile Include="ViewModels\BetViewModel.cs" />
     <Compile Include="ViewModels\BookMakerViewModel.cs" />
   </ItemGroup>
